@@ -1,114 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Calculadora de Datas</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        #header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f0f0; /* Cor de fundo do cabeçalho */
-        }
-
-        #logo {
-            margin-right: 20px; /* Espaço à direita da imagem */
-            max-height: 80px; /* Altura máxima da imagem */
-        }
-
-        h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-
-        form {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        label {
-            font-size: 18px;
-        }
-
-        input[type="date"] {
-            font-size: 16px;
-            padding: 5px;
-        }
-
-        input[type="submit"],
-        input[type="reset"] {
-            font-size: 18px;
-            padding: 10px 20px;
-            background-color: #007bff; /* Cor de fundo do botão */
-            color: #fff; /* Cor do texto do botão */
-            border: none;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover,
-        input[type="reset"]:hover {
-            background-color: #0056b3; /* Cor de fundo ao passar o mouse sobre o botão */
-        }
-
-        #result {
-            font-size: 20px;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de intervalo de datas</title>
 </head>
 <body>
-    <div id="header">
-        <img src="https://pixel.cuboup.com/wp-content/uploads/edd/2021/08/Icone-Calculadora.jpg" id="logo" alt="Logo">
-        <h1>Calculadora de Datas</h1>
-    </div>
-    <form id="dateForm">
-        <label for="startDate">Primeira data:</label>
-        <input type="date" id="startDate" required>
-        <br>
-        <label for="endDate">Segunda data:</label>
-        <input type="date" id="endDate" required>
-        <br>
-        <input type="submit" value="Calcular">
-        <input type="reset" value="Limpar">
-    </form>
-    <div id="result"></div>
-
-    <script>
-        document.getElementById("dateForm").addEventListener("submit", function (event) {
-            event.preventDefault();
-
-            const startDate = new Date(document.getElementById("startDate").value);
-            const endDate = new Date(document.getElementById("endDate").value);
-
-            let years = endDate.getFullYear() - startDate.getFullYear();
-            let months = endDate.getMonth() - startDate.getMonth();
-            let days = endDate.getDate() - startDate.getDate();
-
-            if (days < 0) {
-                months--;
-                const lastMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
-                days += lastMonth.getDate();
-            }
-
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            const resultElement = document.getElementById("result");
-            resultElement.innerHTML = `
-                Período: ${years} anos, ${months} meses e ${days} dias.
-            `;
-        });
-    </script>
+<h1>Calculadora de intervalo de datas</h1>
+<form id="dateForm">
+<label for="startDate">Primeira data:</label>
+<input type="date" id="startDate" required>
+<br>
+<label for="endDate">Segunda data:</label>
+<input type="date" id="endDate" required>
+<br>
+<input type="submit" value="Calcular">
+<input type="reset" value="Limpar">
+</form>
+<div id="result"></div>
+<script>
+document.getElementById("dateForm").addEventListener("submit", function (event) {
+event.preventDefault();
+const startDate = new Date(document.getElementById("startDate").value);
+const endDate = new Date(document.getElementById("endDate").value);
+let years = endDate.getFullYear() - startDate.getFullYear();
+let months = endDate.getMonth() - startDate.getMonth();
+let days = endDate.getDate() - startDate.getDate();
+if (days < 0) {
+months--;
+const lastMonth = new Date(endDate.getFullYear(), endDate.getMonth(), 0);
+days += lastMonth.getDate();
+}
+if (months < 0) {
+years--;
+months += 12;
+}
+const resultElement = document.getElementById("result");
+resultElement.innerHTML = `
+Período: ${years} anos, ${months} meses e ${days} dias.
+ `;
+});
+</script>
 </body>
 </html>
